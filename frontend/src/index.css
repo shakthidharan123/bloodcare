@@ -1,0 +1,13 @@
+@tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+ @layer base{
+  input{
+      @apply border border-black rounded text-black;
+  }
+
+  label{
+    @apply text-xl mr-8
+  }
+ }
