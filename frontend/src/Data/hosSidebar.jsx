@@ -1,5 +1,6 @@
 import { MdAccountCircle, MdOutlineCampaign } from 'react-icons/md';
 import { FaHandHoldingMedical } from 'react-icons/fa';
+import { FaHandHoldingWater } from "react-icons/fa";
 
 export const content = [
     {
@@ -16,6 +17,11 @@ export const content = [
         name: 'Campaign',
         icon: <MdOutlineCampaign className='w-10 h-10' />,
         path: '/bloodbank/campaign'
+    },
+    {
+        name: 'Stock',
+        icon: <FaHandHoldingWater className='w-10 h-10' />,
+        path: '/bloodbank/stock'
     },
 ];
 
