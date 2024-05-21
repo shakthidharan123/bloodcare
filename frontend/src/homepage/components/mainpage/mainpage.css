@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+  background:	white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Heading Styles */
+.heading {
+  color: black;
+  font-size: xx-large;
+  text-align: center;
+  margin: 0;
+  padding-top: 50px;  /* Adjust padding as needed */
+   /* Adjust padding as needed */
+  position: absolute;
+  top: 20px;  /* Move heading slightly to the top */
+  width: 100%;
+}
+
+/* Navigation Styles */
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ /* Space between heading and navigation */
+  width: 100%;
+}
+
+.navigation img {
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  border-color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Image Container Styles */
+.mainimage1, .mainimage2, .mainimage3 {
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vh - 150px); /* Full height minus padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 150px; /* Space for heading and navigation */
+}
+
+/* Transition property for smooth transformation of images */
+.mainimage1 img:hover, 
+.mainimage2 img:hover, 
+.mainimage3 img:hover {
+  transition: transform 0.5s ease;
+  transform: scale(1.5);
+}

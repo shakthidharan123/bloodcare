@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Client Card Styles */
+.client-card {
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 50px;  /* Added margin to differentiate the heading */
+}
+
+.client-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color:black;
+}
+
+.client-description {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: black;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Image Container Styles */
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
+
+.image-item {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Space between rows */
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-item:hover img {
+  transform: scale(1.1);
+}
+
+.image-item:hover .image-text {
+  opacity: 1;
+}
+
+/* New Styles for Image Names Below the Image */
+.image-name {
+  font-size: 16px;
+  color: #000; /* Black text color */
+  margin-top: 10px; /* Space between image and name */
+  text-align: center;
+}

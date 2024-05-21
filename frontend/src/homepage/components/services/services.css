@@ -1,0 +1,79 @@
+/* Services.css */
+
+.services {
+    padding: 60px 0;
+}
+
+.services .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.services .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.services .section-title p {
+    margin: 10px 0 0 0;
+    padding: 0;
+    color: #777;
+}
+
+.services .row {
+    display: flex;
+    justify-content: space-between; /* Space between the boxes */
+    
+}
+
+.services .icon-box {
+    background: #fff;
+    box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    margin: 15px; /* Space between boxes */
+    flex: 1 0 30%; /* 3 boxes per row, equal width */
+    box-sizing: border-box;
+}
+
+.services .icon-box:hover {
+    background-color: #f8d7da; /* Light red background on hover */
+    color: #000; /* Black text color on hover */
+}
+
+.services .icon-box .icon {
+    margin: 0 auto 20px auto;
+    text-align: center;
+}
+
+.services .icon-box .icon img {
+    width: 70px;
+    height: 70px;
+}
+
+.services .icon-box h4 {
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.services .icon-box h4 a {
+    color: inherit; /* Inherit color for hover effect */
+    text-decoration: none;
+}
+
+.services .icon-box p {
+    color: inherit; /* Inherit color for hover effect */
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+}
