@@ -24,6 +24,7 @@ function App() {
           <Route exact path='/bloodbank/donor' element={<Donorlist />} />
           <Route exact path='/bloodbank/campaign' element={<Campaign />} />
           <Route exact path='/bloodbank/stock' element={<StockCard />} />
+          <Route exact path='/bloodbank/stock' element={<StockCard />} />
       </Route>
     </Routes>
     
