@@ -1,14 +1,45 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import {donors} from '../Data/Donordata'
 import {columns} from '../Data/Columns'
 import { useMemo } from 'react'
 import { useTable,useGlobalFilter } from 'react-table'
 import Searchbar from './Searchbar'
 import DModal from './dModal'
+import Sidebar from './sidebar'
+import Axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 function donorlist() {
+    const [men,setMen] = useState([]);
+    const navigate=useNavigate();
+    Axios.defaults.withCredentials = true;
+    useEffect(()=>{
+        Axios.get('http://localhost:8081/bloodbank/login').then(
+          (res)=>{
+            console.log(res.data);  
+            if(res.data.isLoggedIn){
+              console.log("Welcome")
+              Axios.get('http://localhost:8081/bloodbank/donorlist').then((res)=>{
+                if(res.data === "Campaign mismatch"){
+                    toast.error("No such Campaign")
+                }
+                else{
+                console.log(res.data);
+                setMen(res.data);
+                }
+              })
+            }else{
+              navigate('/blogin');
+            }
+          }
+        ).catch((err)=>console.log(err));
+      },[])
+
     const [modal,setModal] = useState(false);
     const col = useMemo(()=> columns,[])
-    const Data =  useMemo(()=> donors,[] )    
+    const Data =  useMemo(()=> men,[men] );  
+      
 
     const Tableinstance = useTable({
         columns:col,
@@ -21,6 +52,8 @@ function donorlist() {
 
     const {globalFilter} = state;
   return (
+    <div className='flex'>
+        <Sidebar />
    
     <div className={`flex flex-col w-[90%] relative `}>
         <div>
@@ -76,6 +109,7 @@ function donorlist() {
                 
             </tbody>
         </table>
+    </div>
     </div>
     </div>
   )

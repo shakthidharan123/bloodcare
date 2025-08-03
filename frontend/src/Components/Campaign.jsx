@@ -1,14 +1,39 @@
-import {React, useState} from 'react'
+import {React, useState,useEffect} from 'react'
 import {campaignData} from '../Data/campaignData'
 import {columns} from '../Data/campaignColumns'
 import { useMemo } from 'react'
 import { useTable,useGlobalFilter } from 'react-table'
 import Searchbar from './Searchbar'
 import CampModal from './campmodal'
+import Sidebar from './sidebar'
+import Axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 function Campaign() {
+    const[men,setMen] = useState([]);
+    const navigate=useNavigate();
+    Axios.defaults.withCredentials = true;
+    useEffect(()=>{
+        Axios.get('http://localhost:8081/bloodbank/login').then(
+          (res)=>{
+            console.log(res.data);  
+            if(res.data.isLoggedIn){
+              console.log("Welcome")
+              Axios.get("http://localhost:8081/bloodbank/get_camp").then((res)=>{
+                console.log(res.data);
+                setMen(res.data);
+              }).catch((err)=>console.log(err));
+              
+            }else{
+              navigate('/blogin');
+            }
+          }
+        ).catch((err)=>console.log(err));
+      },[])
+
+
     const [campModal,setCampModal] = useState(false);
     const col = useMemo(()=> columns,[])
-    const Data =  useMemo(()=> campaignData,[] )    
+    const Data =  useMemo(()=> men,[men] )    
 
     const Tableinstance = useTable({
         columns:col,
@@ -21,6 +46,8 @@ function Campaign() {
 
     const {globalFilter} = state;
   return (
+    <div className='flex'>
+        <Sidebar />
    
     <div className='flex flex-col w-[90%] '>
         <div>
@@ -69,6 +96,7 @@ function Campaign() {
                 
             </tbody>
         </table>
+    </div>
     </div>
     </div>
   )

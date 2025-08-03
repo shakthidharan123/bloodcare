@@ -1,20 +1,82 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import { bloodRequest } from '@/Data/bloodRequest'
+
 import {columns} from '../Data/requestColumns'
 import { useMemo } from 'react'
 import { useTable,useGlobalFilter } from 'react-table'
 import Searchbar from './Searchbar'
+import Axios from 'axios'
+import Sidebar from './sidebar'
+import { useNavigate } from 'react-router-dom'
+
+//toast
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function donorlist() {
+    const[request,setRequest] = useState([]);
+      
+    
+    const navigate=useNavigate();
+    Axios.defaults.withCredentials = true;
+    useEffect(()=>{
+        
+        Axios.get('http://localhost:8081/bloodbank/login').then(
+          (res)=>{
+            console.log(res.data);  
+            if(res.data.isLoggedIn){
+              console.log("Welcome");
+              Axios.get('http://localhost:8081/bloodbank/request').then((res)=>{
+                console.log(res.data);
+                if (Array.isArray(res.data)) {
+                    setRequest(res.data);
+                } else {
+                    console.log('Data is not an array:', res.data);
+                }
+                
+
+              }).catch((err)=>console.log(err));
+
+            }else{
+              navigate('/blogin');
+            }
+          }
+        ).catch((err)=>console.log(err));
+      },[navigate])
+
+   
+
     
     const handleButtonClick = (e) => {
         console.log(e);
-        e.target.innerText = 'Approved';
+        Axios.patch('http://localhost:8081/bloodbank/approve_request/'+ e.req_id,e).then((res)=>{
+            console.log(res.data);
+            if(res.data === "No sufficient stock"){
+                toast.error("No Sufficient Stock");
+            }
+            else{
+            toast.success("Request Approved");
+            window.location.reload();
+            
+            }
+          
+        }).catch((err)=>{
+            console.log(err);
+            toast.error("Request Denied");
+            
+        });
+
+       
+           
+        
+
+        
+        
         // Add your button click logic here
       };
 
     const col = useMemo(()=> columns,[])
-    const Data =  useMemo(()=> bloodRequest,[] )    
+    const Data =  useMemo(()=> request,[request] )    
 
     const Tableinstance = useTable({
         columns:col,
@@ -27,6 +89,8 @@ function donorlist() {
 
     const {globalFilter} = state;
   return (
+    <div className='flex'>
+        <Sidebar />
    
     <div className={`flex flex-col w-[90%] relative `}>
         <div>
@@ -36,7 +100,7 @@ function donorlist() {
     <Searchbar filter={globalFilter} setfilter={setGlobalFilter} />
     
     
-    </div>
+    </div >
     
         
     
@@ -65,8 +129,10 @@ function donorlist() {
                                 {
                                     row.cells.map((cell) => {
                                         return  <td {...cell.getCellProps()} className="px-4 py-2 border-b border-gray-300 text-gray-900">
-                                            {cell.column.id === 'button' ? (
-                                                <button className=' border-none shadow-md text-white font-bold px-4 py-1 ml-3 bg-green-500  hover:bg-green-400 rounded-full  'onClick={(i) => handleButtonClick(i)}>Approve</button>)
+                                            {
+                                            
+                                            cell.column.id === 'button' ? (
+                                                <button className=' border-none shadow-md text-white font-bold px-4 py-1 ml-3 bg-green-500  hover:bg-green-400 rounded-full'  onClick={() => handleButtonClick(row.values)}>Approve</button>)
                                                                         : (
                                                                     cell.render('Cell')
                     )}
@@ -82,6 +148,8 @@ function donorlist() {
             </tbody>
         </table>
     </div>
+    </div>
+   
     </div>
   )
 }

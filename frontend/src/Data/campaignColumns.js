@@ -1,11 +1,11 @@
 export const columns = [
     {
         Header:'Cid',
-        accessor:'id'
+        accessor:'Campaign_id'
     },
     {
         Header:'CName',
-        accessor:'name'
+        accessor:'campaign_name'
     },
     {
         Header:'Location',
@@ -13,11 +13,8 @@ export const columns = [
     },
     {
         Header:'Date',
-        accessor:'date'
-    },
-    {
-        Header:'Contact',
-        accessor:'contact'
-    },
+        accessor:'Campaign_Date'
+    }
+    
     
 ]

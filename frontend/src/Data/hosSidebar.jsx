@@ -6,7 +6,7 @@ export const content = [
     {
         name: 'Welcome Bloodbank',
         icon:<MdAccountCircle className='w-10 h-10' />,
-        path: '/bloodbank'
+        path: '/bloodbank/request'
     },
     {
         name: 'Donors',

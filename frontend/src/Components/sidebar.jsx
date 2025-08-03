@@ -8,15 +8,27 @@ import { FaHandHoldingMedical } from "react-icons/fa";
 import { MdOutlineCampaign } from "react-icons/md";
 import {content,hcontent} from '../Data/hosSidebar'
 import { useState } from 'react';
+import Axios from 'axios';
+import { toast } from 'react-toastify';
+import '../../node_modules/react-toastify/dist/ReactToastify.css';
 function sidebar(props) {
   const [openSidebar,setOpenSidebar] = useState(false);
   let actual_content = hcontent;
   actual_content = window.location.pathname === '/hospitalrequest' ? hcontent : content;
   
-  
+  const handleLogout = ()=>{
+    Axios.post('http://localhost:8081/logout',{},{withCredentials:true}).then((res)=>{
+      console.log(res.data);
+      toast.success("Logout Successfull");
+      window.location.reload();
+    }).catch((err)=>console.log(err));
+
+    
+  }
   
   return (
-    <div className={`inline fixed shadow-2xl h-[100vh] hover:cursor-pointer bg-red-500 ${openSidebar ? "w-[25%]  backdrop-blur-md" : "w-[4%]"} transition-all duration-500 ease-in-out transform z-50`}>
+    
+    <div className={`inline fixed shadow-2xl h-[100vh] hover:cursor-pointer bg-red-500 ${openSidebar ? "w-[25%]  backdrop-blur-md" : "w-[5%]"} transition-all duration-500 ease-in-out transform z-50`}>
         
         
         <div>
@@ -37,7 +49,7 @@ function sidebar(props) {
             </div>
             </Link>
         ))
-      }
+      } 
         </div>
        
       
@@ -45,7 +57,7 @@ function sidebar(props) {
 
         
 
-        <div className=' border-t hover:cursor-pointer border-t-white h-10 border-b flex items-center py-10 text-xl font-bold 
+        <div onClick={handleLogout} className=' border-t hover:cursor-pointer border-t-white h-10 border-b flex items-center py-10 text-xl font-bold 
         hover:bg-red-300 hover:border-r-8 hover:border-r-white-600' >
         <MdLogout className=' w-10 h-10' />
         <h1 className={` text-white ${!openSidebar && "hidden" }` }>Logout</h1>

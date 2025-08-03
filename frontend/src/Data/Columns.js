@@ -1,31 +1,28 @@
 export const columns = [
     {
         Header:'NAME',
-        accessor:'Name'
+        accessor:'Donor_name'
     },
     {
         Header:'BLOOD GROUP',
-        accessor:'bloodtype'
+        accessor:'Blood_type'
     },
-    {
-        Header:'AGE',
-        accessor:'Age'
-    },
+   
     {
         Header:'GENDER',
         accessor:'gender'
     },
     {
         Header:'Campaign_id',
-        accessor:'C_id'
+        accessor:'campaign_id'
     },
     {
         Header:'Last donated',
-        accessor:'Last_Donated'
+        accessor:'Last_donated'
     },
     {
-        Header:'Date',
-        accessor:'date'
-    },
+        Header:'Quantity',
+        accessor:'Quantity'
+    }
     
 ]

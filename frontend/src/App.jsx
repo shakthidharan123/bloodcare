@@ -8,6 +8,9 @@ import StockCard from './Components/stockCard'
 import Home from './Components/Home'
 import Hlogin from './homepage/components/donor/donor'
 import Blogin from './homepage/components/bloodbanklogin/bloodbank'
+import Admin from './Components/admin'
+import Hsignup from './Components/hsignup'
+import Signup from './Components/Signup'
 function App() {
   
 
@@ -17,15 +20,21 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/hlogin' element={<Hlogin />} />
       <Route path='/blogin' element={<Blogin />} />
+      <Route path = '/bloodbank/signup' element={<Signup />} />
+      <Route path = '/hospital/signup' element={<Hsignup />} />
+
       <Route path='/hospitalrequest' element={<Hospital_request />} /> 
       
-      <Route exact path='/bloodbank' element={<Bloodbank />} >
+      
           <Route exact path='/bloodbank/request' element={<Blood_accept_form/>} />
           <Route exact path='/bloodbank/donor' element={<Donorlist />} />
           <Route exact path='/bloodbank/campaign' element={<Campaign />} />
           <Route exact path='/bloodbank/stock' element={<StockCard />} />
-          <Route exact path='/bloodbank/stock' element={<StockCard />} />
-      </Route>
+     
+          
+      
+
+      <Route exact path='/admin' element = {<Admin />} />
     </Routes>
     
       

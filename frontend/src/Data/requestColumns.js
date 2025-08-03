@@ -1,11 +1,16 @@
 export const columns = [
     {
-        Header:'ID',
-        accessor:'id'
+        Header:'Request_id',
+        accessor:'req_id'
     },
+
     {
         Header:'Hospital_id',
         accessor:'hid'
+    },
+    {
+        Header:'Hospital Name',
+        accessor:'name'
     },
     {
         Header:'Blood type',
@@ -14,6 +19,10 @@ export const columns = [
     {
         Header:'Quantity',
         accessor:'quantity'
+    },
+    {
+        Header:'Location',
+        accessor:'location'
     },
     {
         Header:'Approve',
